@@ -1,12 +1,10 @@
-variable "user_directory" {}
-
 resource "null_resource" "make_directory" {
   triggers = {
     always_run = "${timestamp()}"
   }
 
   provisioner "local-exec" {
-    command = "mkdir -p ${local.root_directory}/${local.folder_types[terraform.workspace]}-dir-$USERDIRECTORY"
+    command     = "mkdir -p ${local.root_directory}/${local.folder_types[terraform.workspace]}-dir-$USERDIRECTORY"
     interpreter = ["bash", "-c"]
 
     environment = {
@@ -29,7 +27,7 @@ resource "null_resource" "create_file" {
 
     environment = {
       USERDIRECTORY = var.user_directory
-    }    
+    }
   }
 }
 

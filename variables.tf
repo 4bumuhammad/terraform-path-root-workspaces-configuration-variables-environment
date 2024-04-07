@@ -3,8 +3,10 @@ locals {
 }
 
 locals {
-  folder_types={
-    dev = "development"
+  folder_types = {
+    dev  = "development"
     prod = "production"
   }
 }
+
+variable "user_directory" {}
