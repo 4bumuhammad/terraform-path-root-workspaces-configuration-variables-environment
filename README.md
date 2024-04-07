@@ -313,6 +313,12 @@ Project structure.
 
 &nbsp;
 
+&nbsp;
+
+---
+
+&nbsp;
+
 <pre>
     ❯ terraform destroy -var-file=tfvar_abumuhammad.tfvars -auto-approve
 
