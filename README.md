@@ -313,6 +313,43 @@ Project structure.
 
 &nbsp;
 
+<pre>
+    ❯ terraform destroy -var-file=tfvar_abumuhammad.tfvars -auto-approve
+
+
+            null_resource.make_directory: Refreshing state... [id=2964119630432058196]
+            null_resource.create_file: Refreshing state... [id=5498691487426809591]
+
+            Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:
+            - destroy
+
+            Terraform will perform the following actions:
+
+            # null_resource.create_file will be destroyed
+            - resource "null_resource" "create_file" {
+                - id       = "5498691487426809591" -> null
+                - triggers = {
+                    - "always_run" = "2024-04-07T16:30:54Z"
+                    } -> null
+                }
+
+            # null_resource.make_directory will be destroyed
+            - resource "null_resource" "make_directory" {
+                - id       = "2964119630432058196" -> null
+                - triggers = {
+                    - "always_run" = "2024-04-07T16:30:54Z"
+                    } -> null
+                }
+
+            Plan: 0 to add, 0 to change, 2 to destroy.
+            null_resource.create_file: Destroying... [id=5498691487426809591]
+            null_resource.create_file: Destruction complete after 0s
+            null_resource.make_directory: Destroying... [id=2964119630432058196]
+            null_resource.make_directory: Destruction complete after 0s
+
+            Destroy complete! Resources: 2 destroyed.
+</pre>
+
 &nbsp;
 
 ---
