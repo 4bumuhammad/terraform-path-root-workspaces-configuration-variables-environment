@@ -300,6 +300,16 @@ Project structure.
 
 &nbsp;
 
+<pre>
+    ❯ find ./ -maxdepth 1 -type d -name '*-dir-*' -exec tree -L 3 -- {} \;
+
+            .//development-dir-dhonyabumuhammad
+            └── file-2024-04-07T16:30:54Z
+
+            0 directories, 1 file
+
+</pre>
+
 &nbsp;
 
 &nbsp;
