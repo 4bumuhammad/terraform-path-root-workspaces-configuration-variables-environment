@@ -3,4 +3,10 @@ REPORTS
   Terraform Workspace: dev
   Environment USERDIRECTORY: dhonyabumuhammad
   Created Directory: ./development-dir-dhonyabumuhammad
-  Timestamp: Mon Apr  8 00:34:37 WIB 2024
+  Timestamp: Mon Apr  8 04:23:28 WIB 2024
+
+  Trigger Name: trigger-create-file
+  Terraform Workspace: dev
+  Environment USERDIRECTORY: dhonyabumuhammad
+  Created File: ./development-dir-dhonyabumuhammad/file-2024-04-07T21:23:28Z
+  Timestamp: Mon Apr  8 04:23:28 WIB 2024

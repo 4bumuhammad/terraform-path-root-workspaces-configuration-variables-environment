@@ -106,16 +106,27 @@ Project structure.
 
         resource "null_resource" "make_directory" {
           triggers = {
-            always_run = "${timestamp()}"
+            always_run   = "${timestamp()}"
+            trigger_name = "trigger-make-directory"
           }
         
           provisioner "local-exec" {
-            command = "mkdir -p ${local.root_directory}/${local.folder_types[terraform.workspace]}-dir-$USERDIRECTORY"
+            command     = "mkdir -p ${local.root_directory}/${local.folder_types[terraform.workspace]}-dir-$USERDIRECTORY"
             interpreter = ["bash", "-c"]
         
             environment = {
               USERDIRECTORY = var.user_directory
             }
+          }
+          provisioner "local-exec" {
+            command = &lt;&lt;EOT
+              echo "REPORTS" &gt; directory_name.txt
+              echo "  Trigger Name: ${self.triggers.trigger_name}" &gt;&gt; directory_name.txt
+              echo "  Terraform Workspace: $(terraform workspace show)" &gt;&gt; directory_name.txt
+              echo "  Environment USERDIRECTORY: ${var.user_directory}" &gt;&gt; directory_name.txt
+              echo "  Created Directory: ${local.root_directory}/${local.folder_types[terraform.workspace]}-dir-${var.user_directory}" &gt;&gt; directory_name.txt
+              echo "  Timestamp: $(date)" &gt;&gt; directory_name.txt
+            EOT
           }
         }
         
@@ -123,7 +134,8 @@ Project structure.
           depends_on = [null_resource.make_directory]
         
           triggers = {
-            always_run = "${timestamp()}"
+            always_run   = "${timestamp()}"
+            trigger_name = "trigger-create-file"
           }
         
           provisioner "local-exec" {
@@ -133,7 +145,22 @@ Project structure.
         
             environment = {
               USERDIRECTORY = var.user_directory
-            }    
+            }
+          }
+        
+          provisioner "local-exec" {
+            command = &lt;&lt;EOT
+              if [ ! -f "directory_name.txt" ]; then
+                echo "REPORTS" &gt; directory_name.txt
+              fi
+        
+              echo "" &gt;&gt; directory_name.txt
+              echo "  Trigger Name: ${self.triggers.trigger_name}" &gt;&gt; directory_name.txt
+              echo "  Terraform Workspace: $(terraform workspace show)" &gt;&gt; directory_name.txt
+              echo "  Environment USERDIRECTORY: ${var.user_directory}" &gt;&gt; directory_name.txt
+              echo "  Created File: ${local.root_directory}/${local.folder_types[terraform.workspace]}-dir-${var.user_directory}/file-${timestamp()}" &gt;&gt; directory_name.txt
+              echo "  Timestamp: $(date)" &gt;&gt; directory_name.txt
+            EOT
           }
         }
 </pre>
