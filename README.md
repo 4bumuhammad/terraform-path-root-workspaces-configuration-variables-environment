@@ -39,14 +39,14 @@
 
 Project structure.
 <pre>
-    ❯ tree -L 3 -a -I 'README.md|.DS_Store|.git|.gitignore|gambar-petunjuk|.terraform|*.hcl|*.tfstate|*.tfstate.backup|*.tfstate.d' ./
-
+    ❯ tree -L 3 -a -I 'README.md|.DS_Store|.git|.gitignore|gambar-petunjuk|.terraform|*.hcl|*.tfstate|*.tfstate.backup|*.tfstate.d|*.txt' ./
         ├── main.tf
+        ├── outputs.tf
         ├── provider.tf
         ├── tfvar_abumuhammad.tfvars
         └── variables.tf
 
-        0 directories, 4 files
+        0 directories, 5 files
 </pre>
 
 &nbsp;
