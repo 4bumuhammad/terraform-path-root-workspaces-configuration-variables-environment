@@ -273,32 +273,65 @@ Project structure.
 
 
 
+            null_resource.make_directory: Refreshing state... [id=1672252347760177823]
+            null_resource.create_file: Refreshing state... [id=5840028482044876675]
+
             Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:
-            + create
+            -/+ destroy and then create replacement
+            <= read (data resources)
 
             Terraform will perform the following actions:
 
-            # null_resource.create_file will be created
-            + resource "null_resource" "create_file" {
-                + id       = (known after apply)
-                + triggers = {
-                    + "always_run" = (known after apply)
+              # data.local_file.load_directory_name will be read during apply
+              # (depends on a resource or a module with changes pending)
+            <= data "local_file" "load_directory_name" {
+                  + content              = (known after apply)
+                  + content_base64       = (known after apply)
+                  + content_base64sha256 = (known after apply)
+                  + content_base64sha512 = (known after apply)
+                  + content_md5          = (known after apply)
+                  + content_sha1         = (known after apply)
+                  + content_sha256       = (known after apply)
+                  + content_sha512       = (known after apply)
+                  + filename             = "directory_name.txt"
+                  + id                   = (known after apply)
+                }
+
+              # null_resource.create_file must be replaced
+            -/+ resource "null_resource" "create_file" {
+                  ~ id       = "5840028482044876675" -> (known after apply)
+                  ~ triggers = { # forces replacement
+                      ~ "always_run"   = "2024-04-07T21:32:05Z" -> (known after apply)
+                        # (1 unchanged element hidden)
                     }
                 }
 
-            # null_resource.make_directory will be created
-            + resource "null_resource" "make_directory" {
-                + id       = (known after apply)
-                + triggers = {
-                    + "always_run" = (known after apply)
+              # null_resource.make_directory must be replaced
+            -/+ resource "null_resource" "make_directory" {
+                  ~ id       = "1672252347760177823" -> (known after apply)
+                  ~ triggers = { # forces replacement
+                      ~ "always_run"   = "2024-04-07T21:32:05Z" -> (known after apply)
+                        # (1 unchanged element hidden)
                     }
                 }
 
-            Plan: 2 to add, 0 to change, 0 to destroy.
+            Plan: 2 to add, 0 to change, 2 to destroy.
 
-            ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-
-            Note: You didn't use the -out option to save this plan, so Terraform can't guarantee to take exactly these actions if you run "terraform apply" now.
+            Changes to Outputs:
+              ~ load_directory_name = &lt;&lt;-EOT
+                    REPORTS
+                      Trigger Name: trigger-make-directory
+                      Terraform Workspace: dev
+                      Environment USERDIRECTORY: dhonyabumuhammad
+                      Created Directory: ./development-dir-dhonyabumuhammad
+                      Timestamp: Mon Apr  8 04:32:05 WIB 2024
+                    
+                      Trigger Name: trigger-create-file
+                      Terraform Workspace: dev
+                      Environment USERDIRECTORY: dhonyabumuhammad
+                      Created File: ./development-dir-dhonyabumuhammad/file-2024-04-07T21:32:05Z
+                      Timestamp: Mon Apr  8 04:32:05 WIB 2024
+                EOT -> (known after apply)
 </pre>
 
 <pre>
@@ -351,7 +384,7 @@ Project structure.
             Plan: 2 to add, 0 to change, 2 to destroy.
 
             Changes to Outputs:
-              ~ load_directory_name = <<-EOT
+              ~ load_directory_name = &lt;&lt;-EOT
                     REPORTS
                       Trigger Name: trigger-make-directory
                       Terraform Workspace: dev
@@ -373,13 +406,13 @@ Project structure.
             null_resource.make_directory: Provisioning with 'local-exec'...
             null_resource.make_directory (local-exec): Executing: ["bash" "-c" "mkdir -p ./development-dir-$USERDIRECTORY"]
             null_resource.make_directory: Provisioning with 'local-exec'...
-            null_resource.make_directory (local-exec): Executing: ["/bin/sh" "-c" "      echo \"REPORTS\" > directory_name.txt\n      echo \"  Trigger Name: trigger-make-directory\" >> directory_name.txt\n      echo \"  Terraform Workspace: $(terraform workspace show)\" >> directory_name.txt\n      echo \"  Environment USERDIRECTORY: dhonyabumuhammad\" >> directory_name.txt\n      echo \"  Created Directory: ./development-dir-dhonyabumuhammad\" >> directory_name.txt\n      echo \"  Timestamp: $(date)\" >> directory_name.txt\n"]
+            null_resource.make_directory (local-exec): Executing: ["/bin/sh" "-c" "      echo \"REPORTS\" > directory_name.txt\n      echo \"  Trigger Name: trigger-make-directory\" &gt;&gt; directory_name.txt\n      echo \"  Terraform Workspace: $(terraform workspace show)\" &gt;&gt; directory_name.txt\n      echo \"  Environment USERDIRECTORY: dhonyabumuhammad\" &gt;&gt; directory_name.txt\n      echo \"  Created Directory: ./development-dir-dhonyabumuhammad\"&gt;&gt; directory_name.txt\n      echo \"  Timestamp: $(date)\" &gt;&gt; directory_name.txt\n"]
             null_resource.make_directory: Creation complete after 0s [id=1672252347760177823]
             null_resource.create_file: Creating...
             null_resource.create_file: Provisioning with 'local-exec'...
             null_resource.create_file (local-exec): Executing: ["bash" "-c" "touch ./development-dir-$USERDIRECTORY/file-2024-04-07T21:32:05Z"]
             null_resource.create_file: Provisioning with 'local-exec'...
-            null_resource.create_file (local-exec): Executing: ["/bin/sh" "-c" "      if [ ! -f \"directory_name.txt\" ]; then\n        echo \"REPORTS\" > directory_name.txt\n      fi\n\n      echo \"\" >> directory_name.txt\n      echo \"  Trigger Name: trigger-create-file\" >> directory_name.txt\n      echo \"  Terraform Workspace: $(terraform workspace show)\" >> directory_name.txt\n      echo \"  Environment USERDIRECTORY: dhonyabumuhammad\" >> directory_name.txt\n      echo \"  Created File: ./development-dir-dhonyabumuhammad/file-2024-04-07T21:32:05Z\" >> directory_name.txt\n      echo \"  Timestamp: $(date)\" >> directory_name.txt\n"]
+            null_resource.create_file (local-exec): Executing: ["/bin/sh" "-c" "      if [ ! -f \"directory_name.txt\" ]; then\n        echo \"REPORTS\" > directory_name.txt\n      fi\n\n      echo \"\" &gt;&gt; directory_name.txt\n      echo \"  Trigger Name: trigger-create-file\" &gt;&gt; directory_name.txt\n      echo \"  Terraform Workspace: $(terraform workspace show)\" &gt;&gt; directory_name.txt\n      echo \"  Environment USERDIRECTORY: dhonyabumuhammad\" &gt;&gt; directory_name.txt\n      echo \"  Created File: ./development-dir-dhonyabumuhammad/file-2024-04-07T21:32:05Z\" &gt;&gt; directory_name.txt\n      echo \"  Timestamp: $(date)\" &gt;&gt; directory_name.txt\n"]
             null_resource.create_file: Creation complete after 0s [id=5840028482044876675]
             data.local_file.load_directory_name: Reading...
             data.local_file.load_directory_name: Read complete after 0s [id=17159525d71785d193ca89f274ea521b9b84daeb]
