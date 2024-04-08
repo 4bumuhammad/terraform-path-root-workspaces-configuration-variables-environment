@@ -513,7 +513,3 @@ Project structure.
 &nbsp;
 
 &nbsp;
-
-<div align="center">
-    <img src="./gambar-petunjuk/Solar_eclipse_of_april_8_2024.mov" alt="Solar_eclipse_of_april_8_2024e" style="display: block; margin: 0 auto;">
-</div> 
