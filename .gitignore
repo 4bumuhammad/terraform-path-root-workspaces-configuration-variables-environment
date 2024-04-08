@@ -15,3 +15,9 @@
 **/*.tfstate
 **/*.tfstate.backup
 **/*.tfstate.d
+
+
+
+*-dir-*
+*.txt
+**/file-*

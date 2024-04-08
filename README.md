@@ -463,37 +463,54 @@ Project structure.
     ❯ terraform destroy -var-file=tfvar_abumuhammad.tfvars -auto-approve
 
 
-            null_resource.make_directory: Refreshing state... [id=2964119630432058196]
-            null_resource.create_file: Refreshing state... [id=5498691487426809591]
+
+            null_resource.make_directory: Refreshing state... [id=1672252347760177823]
+            null_resource.create_file: Refreshing state... [id=5840028482044876675]
 
             Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:
-            - destroy
+              - destroy
 
             Terraform will perform the following actions:
 
-            # null_resource.create_file will be destroyed
-            - resource "null_resource" "create_file" {
-                - id       = "5498691487426809591" -> null
-                - triggers = {
-                    - "always_run" = "2024-04-07T16:30:54Z"
+              # null_resource.create_file will be destroyed
+              - resource "null_resource" "create_file" {
+                  - id       = "5840028482044876675" -> null
+                  - triggers = {
+                      - "always_run"   = "2024-04-07T21:32:05Z"
+                      - "trigger_name" = "trigger-create-file"
                     } -> null
                 }
 
-            # null_resource.make_directory will be destroyed
-            - resource "null_resource" "make_directory" {
-                - id       = "2964119630432058196" -> null
-                - triggers = {
-                    - "always_run" = "2024-04-07T16:30:54Z"
+              # null_resource.make_directory will be destroyed
+              - resource "null_resource" "make_directory" {
+                  - id       = "1672252347760177823" -> null
+                  - triggers = {
+                      - "always_run"   = "2024-04-07T21:32:05Z"
+                      - "trigger_name" = "trigger-make-directory"
                     } -> null
                 }
 
             Plan: 0 to add, 0 to change, 2 to destroy.
-            null_resource.create_file: Destroying... [id=5498691487426809591]
-            null_resource.create_file: Destruction complete after 0s
-            null_resource.make_directory: Destroying... [id=2964119630432058196]
-            null_resource.make_directory: Destruction complete after 0s
 
-            Destroy complete! Resources: 2 destroyed.
+            Changes to Outputs:
+              - load_directory_name = <<-EOT
+                    REPORTS
+                      Trigger Name: trigger-make-directory
+                      Terraform Workspace: dev
+                      Environment USERDIRECTORY: dhonyabumuhammad
+                      Created Directory: ./development-dir-dhonyabumuhammad
+                      Timestamp: Mon Apr  8 04:32:05 WIB 2024
+                    
+                      Trigger Name: trigger-create-file
+                      Terraform Workspace: dev
+                      Environment USERDIRECTORY: dhonyabumuhammad
+                      Created File: ./development-dir-dhonyabumuhammad/file-2024-04-07T21:32:05Z
+                      Timestamp: Mon Apr  8 04:32:05 WIB 2024
+                EOT -> null
+            null_resource.create_file: Destroying... [id=5840028482044876675]
+            null_resource.create_file: Destruction complete after 0s
+            null_resource.make_directory: Destroying... [id=1672252347760177823]
+            null_resource.make_directory: Destruction complete after 0s
 </pre>
 
 &nbsp;
