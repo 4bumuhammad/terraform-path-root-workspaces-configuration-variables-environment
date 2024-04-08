@@ -1,12 +1,12 @@
 REPORTS
   Trigger Name: trigger-make-directory
-  Terraform Workspace: dev
+  Terraform Workspace: prod
   Environment USERDIRECTORY: dhonyabumuhammad
-  Created Directory: ./development-dir-dhonyabumuhammad
-  Timestamp: Mon Apr  8 04:32:05 WIB 2024
+  Created Directory: ./production-dir-dhonyabumuhammad
+  Timestamp: Mon Apr  8 09:10:59 WIB 2024
 
   Trigger Name: trigger-create-file
-  Terraform Workspace: dev
+  Terraform Workspace: prod
   Environment USERDIRECTORY: dhonyabumuhammad
-  Created File: ./development-dir-dhonyabumuhammad/file-2024-04-07T21:32:05Z
-  Timestamp: Mon Apr  8 04:32:05 WIB 2024
+  Created File: ./production-dir-dhonyabumuhammad/file-2024-04-08T02:10:59Z
+  Timestamp: Mon Apr  8 09:10:59 WIB 2024
